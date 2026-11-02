@@ -1,0 +1,10 @@
+.env
+.env.*
+!.env.example
+node_modules/
+*.log
+# Secretos generados o copiados localmente; el keyfile de Compose reside en un volumen Docker
+mongodb-keyfile
+mongodb-keyfile.*
+keyfile/
+secrets/

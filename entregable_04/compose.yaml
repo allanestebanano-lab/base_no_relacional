@@ -1,0 +1,30 @@
+name: nosql-entregable-04
+
+services:
+  redis:
+    image: redis:8.4.8-alpine3.22
+    restart: unless-stopped
+    entrypoint: ["/bin/sh", "/usr/local/bin/start-redis.sh"]
+    ports:
+      - "127.0.0.1:${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis_data:/data
+      - ./redis.conf:/usr/local/etc/redis/redis.conf:ro
+      - ./scripts/start-redis.sh:/usr/local/bin/start-redis.sh:ro
+    secrets:
+      - redis_password
+    networks:
+      - redis_net
+
+secrets:
+  redis_password:
+    file: ${REDIS_PASSWORD_FILE:-./secrets/redis_password.txt}
+
+networks:
+  redis_net:
+    name: nosql-entregable-04_red
+    driver: bridge
+
+volumes:
+  redis_data:
+    name: nosql-entregable-04_redis_data

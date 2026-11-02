@@ -1,0 +1,27 @@
+name: nosql-entregable-01
+
+services:
+  mongodb:
+    image: mongo:8.0.32-noble
+    restart: unless-stopped
+
+    ports:
+      - "127.0.0.1:27017:27017"
+
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME:?Falta usuario}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD:?Falta password}
+
+    volumes:
+      - mongo_data:/data/db
+
+    networks:
+      - red_nosql
+
+volumes:
+  mongo_data:
+
+networks:
+  red_nosql:
+    driver: bridge
+    

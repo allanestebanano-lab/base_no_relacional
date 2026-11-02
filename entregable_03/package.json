@@ -1,0 +1,22 @@
+{
+  "name": "nosql-entregable-03",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Práctica reproducible de transacciones ACID con MongoDB y Node.js",
+  "type": "module",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "check": "node src/check.js",
+    "seed": "node src/seed.js",
+    "commit": "node src/run-scenario.js commit",
+    "rollback": "node src/run-scenario.js rollback",
+    "demo": "node src/demo.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "mongodb": "^6.21.0"
+  }
+}
